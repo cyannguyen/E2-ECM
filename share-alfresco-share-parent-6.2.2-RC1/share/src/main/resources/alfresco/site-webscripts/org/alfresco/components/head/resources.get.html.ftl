@@ -4,8 +4,8 @@
 -->
 <@markup id="favicons">
    <!-- Icons -->
-   <link rel="shortcut icon" href="${url.context}/res/favicon.ico" type="image/vnd.microsoft.icon" />
-   <link rel="icon" href="${url.context}/res/favicon.ico" type="image/vnd.microsoft.icon" />
+   <link rel="shortcut icon" href="${url.context}/res/favicon.png" type="image/vnd.microsoft.icon" />
+   <link rel="icon" href="${url.context}/res/favicon.png" type="image/vnd.microsoft.icon" />
 </@markup>
 
 <@markup id="yui">
@@ -89,10 +89,7 @@
 
       Alfresco.constants.TINY_MCE_SUPPORTED_LOCALES = "${config.global["I18N"].getChildValue("tiny-mce-supported-locales")}";
 
-      <#assign aimsConfig = config.scoped["AIMS"] />
-      <#if aimsConfig?? && aimsConfig.enabled.getValue()?boolean == true>
-         Alfresco.constants.AIMS_AUTH_SERVER_URL = "${aimsConfig.authServerUrl.getValue()!""}";
-      </#if>
+      
    </@>
 </@>
 

@@ -1,0 +1,35 @@
+Manifest-Version: 1.0
+Implementation-Title: Alfresco Share WAR
+Build-Date: 2021-05-18T02:07:40Z
+Build-Number: 
+Implementation-Version: 6.2.2-RC1
+Built-By: Dev5
+Specification-Vendor: Alfresco Software
+Specification-Title: Alfresco Share WAR
+Implementation-Vendor-Id: org.alfresco
+Build-Key: 
+Implementation-Vendor: Alfresco Software
+Build-Revision: 
+Build-Name: 
+Build-Jdk: 1.8.0_131
+Implementation-URL: http://www.alfresco.org/alfresco-share-parent/shar
+ e/
+Created-By: Maven Integration for Eclipse
+Specification-Version: 6.2.1
+
+Name: Share Libraries
+surf: 6.2.2-RC1
+spring: 5.1.15.RELEASE
+freemarker: 2.3.28
+rhino: 1.7.11
+alfresco-core: 7.33
+alfresco-jlan: 7.1
+yui: 2.9.0-alfresco-20141223
+webscripts: 7.15
+aikau: 1.0.101.21
+
+Name: Source-control
+Source-Url: null
+Source-Revision: null
+Last-change-Revision: null
+

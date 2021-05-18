@@ -560,7 +560,7 @@
                },
                dataSource:
                {
-                  url: Alfresco.constants.PROXY_URI + (parent.options.showAuthorizationStatus ? "api/people-enterprise" : "api/people"),
+                  url: Alfresco.constants.PROXY_URI + (parent.options.showAuthorizationStatus ? "api/people" : "api/people"),
                   pagingResolver: function (currentSkipCount, currentMaxItems, currentSortKey, currentDir)
                   {
                      // People webscript uses other pagination parameters than the default setting

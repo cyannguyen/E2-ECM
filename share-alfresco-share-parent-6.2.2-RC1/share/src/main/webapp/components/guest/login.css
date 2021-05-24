@@ -58,7 +58,7 @@ div.login
    background-color: #fff;
    outline: none;
    font-size: 120%;
-   width: 316px;
+   width: 419px;
 }
 
 /* fake MD input focus */
@@ -98,7 +98,7 @@ div.login
 
 .form-fields.login .form-field > span.yui-button > .first-child > button
 {
-   width: 318px;
+   width: 422px;
    color: #fff;
    font-family: Open Sans Bold,Arial,sans-serif;
    line-height: inherit;

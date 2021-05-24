@@ -193,6 +193,7 @@
        */
       onFileUploadComplete: function onFileUploadComplete(complete)
       {
+    	  console.log(complete);
          var success = complete.successful.length;
          if (success != 0)
          {

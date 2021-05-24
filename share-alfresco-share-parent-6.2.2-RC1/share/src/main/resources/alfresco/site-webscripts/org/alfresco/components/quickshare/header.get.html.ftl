@@ -23,7 +23,7 @@
             </div>
 
             <div class="quickshare-header-left">
-               <img width="180" src="${url.context}/res/components/images/alfresco-logo.svg">
+               <img width="180" src="${url.context}/res/components/images/logo_hvtd_small.png">
             </div>
 
             <div class="quickshare-header-right">

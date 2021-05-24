@@ -55,9 +55,10 @@
                   <div class="label">${msg("label.logo")}:</div>
                   <div class="logo"><img id="${el}-logoimg" src="${url.context}<#if logo?? && logo?length!=0>/proxy/alfresco/api/node/${logo?replace('://','/')}/content<#else>/res/themes/${theme}/images/${defaultlogo}</#if>" /></div>
                   <div>
+                  	<!-- 
                      <button id="${el}-upload-button" name="upload">${msg("button.upload")}</button>&nbsp;
                      <button id="${el}-reset-button" name="reset">${msg("button.reset")}</button>
-                     <div class="logonote">${msg("label.logonote")}</div>
+                     <div class="logonote">${msg("label.logonote")}</div>  -->
                      <input type="hidden" id="console-options-logo" value="" />
                   </div>
                </div>

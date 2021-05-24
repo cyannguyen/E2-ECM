@@ -29,6 +29,9 @@
    display: inline-block;
    line-height: 22px;
    padding: 2px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .footer-ent .copyright
@@ -50,6 +53,7 @@
 {
    padding-right: 1em;
    vertical-align: baseline;
+   padding-top: 2px;
 }
 
 .footer-ent .copyright img

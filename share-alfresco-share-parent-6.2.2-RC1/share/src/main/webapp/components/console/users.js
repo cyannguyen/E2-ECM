@@ -311,7 +311,7 @@
             var renderCellDeauthorizeAction = function renderCellDeauthorizeAction(elCell, oRecord, oColumn, oData)
             {
                var authorizationStatus = oRecord.getData("authorizationStatus");
-               if ("NEVER_AUTHORIZED" != authorizationStatus)
+               if (authorizationStatus != null && "NEVER_AUTHORIZED" != authorizationStatus)
                {
                   var isAdminAuthority = oRecord.getData("isAdminAuthority");
                   var isAuthorized = (authorizationStatus == "AUTHORIZED");
@@ -372,7 +372,7 @@
              */
             var renderCellAuthorizationStatus = function renderCellAuthorizationStatus(elCell, oRecord, oColumn, oData)
             {
-               elCell.innerHTML = $html(parent._msg("label.authorization.status." + oData));
+               elCell.innerHTML = $html(parent._msg("label.authorization.status." + (oData != null ? oData : 'NEVER_AUTHORIZED')));
             };
             
             /**

@@ -1944,3 +1944,10 @@ table.mceLayout
 .dijitTooltipContainer .alfresco-html-Label {
    vertical-align: baseline;
 }
+
+.footer-com .copyright
+{
+   display: flex !important;
+   justify-content: center !important;
+   align-items: center !important;
+}

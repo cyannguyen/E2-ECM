@@ -128,6 +128,7 @@
 
 Alfresco.module.getAboutShareInstance = function()
 {
-   var instanceId = "alfresco-AboutShare-instance";
-   return Alfresco.util.ComponentManager.get(instanceId) || new Alfresco.module.AboutShare(instanceId);
+   //var instanceId = "alfresco-AboutShare-instance";
+   //return Alfresco.util.ComponentManager.get(instanceId) || new Alfresco.module.AboutShare(instanceId);
+	return;
 };

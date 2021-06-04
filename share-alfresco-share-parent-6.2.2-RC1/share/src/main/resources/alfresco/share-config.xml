@@ -67,10 +67,10 @@
     <config evaluator="string-compare" condition="Edition">
         <!-- footer logo and copyright text -->
         <footer>
-            <logo>alfresco-logo.svg</logo>
+            <logo>/share/res/components/images/logo-footer.png</logo>
             <alt-text>Alfresco Share</alt-text>
             <css-class>footer-com</css-class>
-            <label>label.copyright</label>
+            <label>© 2021, Avenue IT Business Solutions JSC. All rights reserved.</label>
         </footer>
         <about>
             <css-class>logo-com</css-class>

@@ -122,7 +122,7 @@
                            </tr>
                            <tr>
                               <td style="padding: 10px 30px;">
-                                 <img src="${shareUrl}/res/themes/default/images/app-logo.png" alt="" width="117" height="48" border="0" />
+                                   <img src="${shareUrl}/res/components/images/logo-footer.png" alt="" width="127" height="28" border="0" />
                               </td>
                            </tr>
                         </table>

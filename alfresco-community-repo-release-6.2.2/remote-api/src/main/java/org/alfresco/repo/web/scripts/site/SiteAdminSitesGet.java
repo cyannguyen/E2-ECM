@@ -105,7 +105,7 @@ public class SiteAdminSitesGet extends DeclarativeWebScript
         final List<FilterProp> filterProp = getFilterProperties(req.getParameter(NAME_FILTER));
 
         final List<Pair<QName, Boolean>> sortProps = new ArrayList<Pair<QName, Boolean>>();
-        sortProps.add(new Pair<QName, Boolean>(ContentModel.PROP_NAME, true));
+        sortProps.add(new Pair<QName, Boolean>(ContentModel.PROP_TITLE, true));
 
         PagingResults<SiteInfo> pagingResults = AuthenticationUtil.runAs(
                     new AuthenticationUtil.RunAsWork<PagingResults<SiteInfo>>()

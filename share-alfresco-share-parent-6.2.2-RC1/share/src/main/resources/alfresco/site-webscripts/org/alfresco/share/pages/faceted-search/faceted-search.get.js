@@ -116,24 +116,325 @@ var headingForResultsList = {
 // Compose the search form model
 var searchForm = {
    id: "FCTSRCH_SEARCH_FORM",
-   name: "alfresco/forms/SingleComboBoxForm",
+   name: "alfresco/forms/Form",
    // name: "alfresco/forms/SingleTextFieldForm",
    config: {
       useHash: true,
       okButtonLabel: msg.get("faceted-search.search-form.ok-button-label"),
-      okButtonPublishTopic : "ALF_SET_SEARCH_TERM",
+      okButtonPublishTopic : "ALF_ADVANCED_SEARCH",
       okButtonPublishGlobal: true,
       okButtonIconClass: "alf-white-search-icon",
-      okButtonClass: "call-to-action",
-      textFieldName: "searchTerm",
-      textBoxIconClass: "alf-search-icon",
-      textBoxCssClasses: "long hiddenlabel",
-      textBoxLabel: msg.get("faceted-search.search-form.search-field-label"),
-      queryAttribute: "term",
-      optionsPublishTopic: "ALF_AUTO_SUGGEST_SEARCH",
-      optionsPublishPayload: {
-         resultsProperty: "response.suggestions"
-      }
+      okButtonClass: "call-to-action", 
+      showCancelButton: false,
+	  widgets:[
+          {
+              name: "alfresco/forms/controls/ComboBox",
+              assignTo: "entryField",
+              config: {
+                 label: msg.get("faceted-search.search-form.search-field-label"),
+                 name: "searchTerm",
+                 //placeHolder: "Keyworks",
+                 requirementConfig: {
+                    initialValue: false
+                 },
+                 iconClass: "alf-search-icon",
+                 additionalCssClasses: "long hiddenlabel",
+                 optionsConfig: {
+                    queryAttribute: "term",
+                    publishTopic: "ALF_AUTO_SUGGEST_SEARCH",
+                    publishPayload:  {
+                        resultsProperty: "response.suggestions"
+                    }
+                 }
+              }
+           },
+           {
+               name: "alfresco/forms/controls/TextBox",
+               assignTo: "entryField",
+               config: {
+                  label: "Name",
+                  placeHolder: "Name",
+                  additionalCssClasses: "long hiddenlabel",
+                  name: "prop_cm_name",
+                  requirementConfig: {
+                     initialValue: false
+                  }
+               }
+            },
+            
+            {
+                name: "alfresco/forms/controls/TextBox",
+                assignTo: "entryField",
+                config: {
+                   label: "Title",
+                   placeHolder: "Title",
+                   additionalCssClasses: "long hiddenlabel",
+                   name: "prop_cm_title",
+                   requirementConfig: {
+                      initialValue: false
+                   }
+                }
+             },
+             {
+                 name: "alfresco/forms/controls/TextBox",
+                 assignTo: "entryField",
+                 config: {
+                    label: "Description",
+                    placeHolder: "Description",
+                    additionalCssClasses: "long hiddenlabel",
+                    name: "prop_cm_description",
+                    requirementConfig: {
+                       initialValue: false
+                    }
+                 }
+              },
+               
+               {
+                   name: "alfresco/forms/controls/Select",
+                   assignTo: "entryField",
+                   config: {
+                      label: "Mimetype",
+                      name: "prop_mimetype",
+                      width: "159px",
+                      placeHolder: "Mimetype",
+                      additionalCssClasses: "",
+                      requirementConfig: {
+                         initialValue: false
+                      },
+                      optionsConfig: {
+                    	           fixed: [
+                    	                { label: "Unknown", value: "" },
+                    	                { label: "3G Video", value: "video/3gpp" },
+                    	                { label: "3G2 Video", value: "video/3gpp2" },
+                    	                { label: "Adobe Acrobat XML Data Package", value: "application/vnd.adobe.xdp+xml" },
+                    	                { label: "Adobe AfterEffects Project", value: "application/vnd.adobe.aftereffects.project" },
+                    	                { label: "Adobe AIR", value: "application/vnd.adobe.air-application-installer-package+zip" },
+                    	                { label: "Adobe Digital Negative Image", value: "image/x-raw-adobe" },
+                    	                { label: "Adobe Flex Project File", value: "application/x-zip" },
+                    	                { label: "Adobe FrameMaker", value: "application/framemaker" },
+                    	                { label: "Adobe Illustrator File", value: "application/illustrator" },
+                    	                { label: "Adobe InDesign Document", value: "application/x-indesign" },
+                    	                { label: "Adobe PageMaker", value: "application/pagemaker" },
+                    	                { label: "Adobe PDF Document", value: "application/pdf" },
+                    	                { label: "Adobe Photoshop", value: "image/vnd.adobe.photoshop" },
+                    	                { value: "image/vnd.adobe.premiere", label: "Adobe Premiere"},
+                    	                { value: "audio/vnd.adobe.soundbooth", label: "Adobe SoundBooth"},
+                    	                { value: "audio/x-aiff", label: "AIFF Audio"},
+                    	                { value: "application/acp", label: "Alfresco Content Package"},
+                    	                { value: "application/vnd.android.package-archive", label: "Android Package"},
+                    	                { value: "image/x-portable-anymap", label: "Anymap Image"},
+                    	                { value: "application/vnd.apple.keynote", label: "Apple iWork Keynote"},
+                    	                { value: "application/vnd.apple.numbers", label: "Apple iWork Numbers"},
+                    	                { value: "application/vnd.apple.pages", label: "Apple iWork Pages"},
+                    	                { value: "image/vnd.dwg", label: "AutoCAD Drawing"},
+                    	                { value: "image/x-dwt", label: "AutoCAD Template"},
+                    	                { value: "audio/basic", label: "Basic Audio"},
+                    	                { value: "application/x-dosexec", label: "Binary File"},
+                    	                { value: "application/octet-stream", label: "Binary File (Octet Stream)"},
+                    	                { value: "image/bmp", label: "Bitmap Image"},
+                    	                { value: "image/x-raw-canon", label: "Canon RAW Image"},
+                    	                { value: "image/cgm", label: "CGM Image"},
+                    	                { value: "text/csv", label: "Comma Separated Values (CSV)"},
+                    	                { value: "application/dita+xml", label: "DITA"},
+                    	                { value: "message/rfc822", label: "EMail"},
+                    	                { value: "application/eps", label: "EPS Type PostScript"},
+                    	                { value: "audio/x-flac", label: "FLAC Audio"},
+                    	                { value: "application/x-fla", label: "Flash Source"},
+                    	                { value: "video/x-flv", label: "Flash Video"},
+                    	                { value: "image/x-raw-fuji", label: "Fuji RAW Image"},
+                    	                { value: "image/gif", label: "GIF Image"},
+                    	                { value: "image/x-portable-graymap", label: "Greymap Image"},
+                    	                { value: "application/x-gzip", label: "GZIP"},
+                    	                { value: "application/x-gtar", label: "GZIP Tarball"},
+                    	                { value: "image/x-raw-hasselblad", label: "Hasselblad RAW Image"},
+                    	                { value: "text/html", label: "HTML"},
+                    	                { value: "application/vnd.oasis.opendocument.text-web", label: "HTML Document Template"},
+                    	                { value: "text/calendar", label: "iCalendar File"},
+                    	                { value: "image/ief", label: "IEF Image"},
+                    	                { value: "application/java-archive", label: "Java Archive"},
+                    	                { value: "application/java", label: "Java Class"},
+                    	                { value: "text/x-jsp", label: "Java Server Page"},
+                    	                { value: "text/x-java-source", label: "Java Source File"},
+                    	                { value: "application/x-javascript", label: "JavaScript"},
+                    	                { value: "image/jp2", label: "JPEG 2000 Image"},
+                    	                { value: "image/jpeg", label: "JPEG Image"},
+                    	                { value: "application/json", label: "JSON"},
+                    	                { value: "image/x-raw-kodak", label: "Kodak RAW Image"},
+                    	                { value: "application/x-latex", label: "LaTeX"},
+                    	                { value: "image/x-raw-leica", label: "Leica RAW Image"},
+                    	                { value: "application/x-troff-man", label: "Man Page"},
+                    	                { value: "text/x-markdown", label: "Markdown"},
+                    	                { value: "text/mediawiki", label: "MediaWiki Markup"},
+                    	                { value: "application/vnd.ms-excel", label: "Microsoft Excel"},
+                    	                { value: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", label: "Microsoft Excel 2007"},
+                    	                { value: "application/vnd.ms-excel.addin.macroenabled.12", label: "Microsoft Excel 2007 add-in"},
+                    	                { value: "application/vnd.ms-excel.sheet.binary.macroenabled.12", label: "Microsoft Excel 2007 binary workbook"},
+                    	                { value: "application/vnd.ms-excel.sheet.macroenabled.12", label: "Microsoft Excel 2007 macro-enabled workbook"},
+                    	                { value: "application/vnd.ms-excel.template.macroenabled.12", label: "Microsoft Excel 2007 macro-enabled workbook template"},
+                    	                { value: "application/vnd.openxmlformats-officedocument.spreadsheetml.template", label: "Microsoft Excel template 2007"},
+                    	                { value: "application/vnd.ms-outlook", label: "Microsoft Outlook Message"},
+                    	                { value: "application/vnd.ms-powerpoint", label: "Microsoft PowerPoint"},
+                    	                { value: "application/vnd.openxmlformats-officedocument.presentationml.presentation", label: "Microsoft PowerPoint 2007"},
+                    	                { value: "application/vnd.ms-powerpoint.addin.macroenabled.12", label: "Microsoft PowerPoint 2007 add-in"},
+                    	                { value: "application/vnd.ms-powerpoint.presentation.macroenabled.12", label: "Microsoft PowerPoint 2007 macro-enabled presentation"},
+                    	                { value: "application/vnd.ms-powerpoint.template.macroenabled.12", label: "Microsoft PowerPoint 2007 macro-enabled presentation template"},
+                    	                { value: "application/vnd.ms-powerpoint.slide.macroenabled.12", label: "Microsoft PowerPoint 2007 macro-enabled slide"},
+                    	                { value: "application/vnd.ms-powerpoint.slideshow.macroenabled.12", label: "Microsoft PowerPoint 2007 macro-enabled slide show"},
+                    	                { value: "application/vnd.openxmlformats-officedocument.presentationml.slide", label: "Microsoft PowerPoint 2007 slide"},
+                    	                { value: "application/vnd.openxmlformats-officedocument.presentationml.slideshow", label: "Microsoft PowerPoint 2007 slide show"},
+                    	                { value: "application/vnd.openxmlformats-officedocument.presentationml.template", label: "Microsoft PowerPoint 2007 template"},
+                    	                { value: "application/vnd.ms-project", label: "Microsoft Project"},
+                    	                { value: "application/vnd.visio", label: "Microsoft Visio"},
+                    	                { value: "application/vnd.visio2013", label: "Microsoft Visio 2013"},
+                    	                { value: "application/msword", label: "Microsoft Word"},
+                    	                { value: "application/vnd.openxmlformats-officedocument.wordprocessingml.document", label: "Microsoft Word 2007"},
+                    	                { value: "application/vnd.ms-word.document.macroenabled.12", label: "Microsoft Word 2007 macro-enabled document"},
+                    	                { value: "application/vnd.ms-word.template.macroenabled.12", label: "Microsoft Word 2007 macro-enabled document template"},
+                    	                { value: "application/vnd.openxmlformats-officedocument.wordprocessingml.template", label: "Microsoft Word 2007 template"},
+                    	                { value: "image/x-raw-minolta", label: "Minolta RAW Image"},
+                    	                { value: "audio/mpeg", label: "MPEG Audio"},
+                    	                { value: "video/mp2t", label: "MPEG Transport Stream"},
+                    	                { value: "video/mpeg", label: "MPEG Video"},
+                    	                { value: "video/mpeg2", label: "MPEG2 Video"},
+                    	                { value: "audio/mp4", label: "MPEG4 Audio"},
+                    	                { value: "video/mp4", label: "MPEG4 Video"},
+                    	                { value: "video/x-m4v", label: "MPEG4 Video (m4v)"},
+                    	                { value: "video/x-ms-asf", label: "MS ASF Streaming Video"},
+                    	                { value: "video/x-msvideo", label: "MS Video"},
+                    	                { value: "audio/x-ms-wma", label: "MS WMA Streaming Audio"},
+                    	                { value: "video/x-ms-wmv", label: "MS WMV Streaming Video"},
+                    	                { value: "image/x-raw-nikon", label: "Nikon RAW Image"},
+                    	                { value: "audio/ogg", label: "Ogg Audio"},
+                    	                { value: "application/ogg", label: "Ogg Multiplex"},
+                    	                { value: "video/ogg", label: "Ogg Video"},
+                    	                { value: "audio/vorbis", label: "Ogg Vorbis Audio"},
+                    	                { value: "image/x-raw-olympus", label: "Olympus RAW Image"},
+                    	                { value: "application/vnd.oasis.opendocument.chart", label: "OpenDocument Chart"},
+                    	                { value: "application/vnd.oasis.opendocument.database", label: "OpenDocument Database"},
+                    	                { value: "application/vnd.oasis.opendocument.graphics", label: "OpenDocument Drawing"},
+                    	                { value: "application/vnd.oasis.opendocument.graphics-template", label: "OpenDocument Drawing Template"},
+                    	                { value: "application/vnd.oasis.opendocument.formula", label: "OpenDocument Formula"},
+                    	                { value: "application/vnd.oasis.opendocument.image", label: "OpenDocument Image"},
+                    	                { value: "application/vnd.oasis.opendocument.text-master", label: "OpenDocument Master Document"},
+                    	                { value: "application/vnd.oasis.opendocument.presentation", label: "OpenDocument Presentation"},
+                    	                { value: "application/vnd.oasis.opendocument.presentation-template", label: "OpenDocument Presentation Template"},
+                    	                { value: "application/vnd.oasis.opendocument.spreadsheet", label: "OpenDocument Spreadsheet"},
+                    	                { value: "application/vnd.oasis.opendocument.spreadsheet-template", label: "OpenDocument Spreadsheet Template"},
+                    	                { value: "application/vnd.oasis.opendocument.text", label: "OpenDocument Text (OpenOffice 2.0)"},
+                    	                { value: "application/vnd.oasis.opendocument.text-template", label: "OpenDocument Text Template"},
+                    	                { value: "application/vnd.sun.xml.calc", label: "OpenOffice 1.0/StarOffice6.0 Calc 6.0"},
+                    	                { value: "application/vnd.sun.xml.calc.template", label: "OpenOffice 1.0/StarOffice6.0 Calc 6.0 Template"},
+                    	                { value: "application/vnd.sun.xml.draw", label: "OpenOffice 1.0/StarOffice6.0 Draw 6.0"},
+                    	                { value: "application/vnd.sun.xml.impress", label: "OpenOffice 1.0/StarOffice6.0 Impress 6.0"},
+                    	                { value: "application/vnd.sun.xml.impress.template", label: "OpenOffice 1.0/StarOffice6.0 Impress 6.0 Template"},
+                    	                { value: "application/vnd.sun.xml.writer", label: "OpenOffice 1.0/StarOffice6.0 Writer 6.0"},
+                    	                { value: "application/vnd.sun.xml.writer.template", label: "OpenOffice 1.0/StarOffice6.0 Writer 6.0 Template"},
+                    	                { value: "image/x-raw-panasonic", label: "Panasonic RAW Image"},
+                    	                { value: "image/x-raw-pentax", label: "Pentax RAW Image"},
+                    	                { value: "image/x-portable-pixmap", label: "Pixmap Image"},
+                    	                { value: "text/plain", label: "Plain Text"},
+                    	                { value: "image/png", label: "PNG Image"},
+                    	                { value: "image/x-portable-bitmap", label: "Portable Bitmap"},
+                    	                { value: "application/postscript", label: "PostScript"},
+                    	                { value: "application/remote-printing", label: "Printer Text File"},
+                    	                { value: "video/quicktime", label: "Quicktime Video"},
+                    	                { value: "video/x-rad-screenplay", label: "RAD Screen Display"},
+                    	                { value: "application/x-rar-compressed", label: "RAR Archive"},
+                    	                { value: "image/x-cmu-raster", label: "Raster Image"},
+                    	                { value: "image/x-raw-red", label: "RED RAW Image"},
+                    	                { value: "image/x-rgb", label: "RGB Image"},
+                    	                { value: "text/richtext", label: "Rich Text"},
+                    	                { value: "application/rtf", label: "Rich Text Format"},
+                    	                { value: "application/rss+xml", label: "RSS"},
+                    	                { value: "image/svg+xml", label: "Scalable Vector Graphics Image"},
+                    	                { value: "video/x-sgi-movie", label: "SGI Video"},
+                    	                { value: "text/sgml", label: "SGML (Human Readable)"},
+                    	                { value: "application/sgml", label: "SGML (Machine Readable)"},
+                    	                { value: "application/x-sh", label: "Shell Script"},
+                    	                { value: "application/x-shockwave-flash", label: "Shockwave Flash"},
+                    	                { value: "image/x-raw-sigma", label: "Sigma RAW Image"},
+                    	                { value: "image/x-raw-sony", label: "Sony RAW Image"},
+                    	                { value: "application/vnd.stardivision.chart", label: "StaChart 5.x"},
+                    	                { value: "application/vnd.stardivision.calc", label: "StarCalc 5.x"},
+                    	                { value: "application/vnd.stardivision.draw", label: "StarDraw 5.x"},
+                    	                { value: "application/vnd.stardivision.impress", label: "StarImpress 5.x"},
+                    	                { value: "application/vnd.stardivision.impress-packed", label: "StarImpress Packed 5.x"},
+                    	                { value: "application/vnd.stardivision.math", label: "StarMath 5.x"},
+                    	                { value: "application/vnd.stardivision.writer", label: "StarWriter 5.x"},
+                    	                { value: "application/vnd.stardivision.writer-global", label: "StarWriter 5.x global"},
+                    	                { value: "text/css", label: "Style Sheet"},
+                    	                { value: "text/tab-separated-values", label: "Tab Separated Values"},
+                    	                { value: "application/x-tar", label: "Tarball"},
+                    	                { value: "application/x-tex", label: "Tex"},
+                    	                { value: "application/x-texinfo", label: "Tex Info"},
+                    	                { value: "image/tiff", label: "TIFF Image"},
+                    	                { value: "x-world/x-vrml", label: "VRML"},
+                    	                { value: "audio/x-wav", label: "WAV Audio"},
+                    	                { value: "video/webm", label: "WebM Video"},
+                    	                { value: "application/wordperfect", label: "WordPerfect"},
+                    	                { value: "image/x-xbitmap", label: "XBitmap Image"},
+                    	                { value: "application/xhtml+xml", label: "XHTML"},
+                    	                { value: "text/xml", label: "XML"},
+                    	                { value: "image/x-xpixmap", label: "XPixmap Image"},
+                    	                { value: "image/x-xwindowdump", label: "XWindow Dump"},
+                    	                { value: "application/x-compress", label: "Z Compress"},
+                    	                { value: "application/zip", label: "ZIP"}
+                    	             ]
+                      }
+                   }
+                },
+               
+               {
+                   name: "alfresco/forms/controls/DateRange",
+                   assignTo: "entryField",
+                   config: {
+                      label: "Modified Date",
+                      additionalCssClasses: "hiddenlabel",
+                      name: "prop_cm_modified-date-range",
+                      requirementConfig: {
+                         initialValue: false
+                      }
+                   }
+                },
+               
+               {
+                   name: "alfresco/forms/controls/TextBox",
+                   assignTo: "entryField",
+                   config: {
+                      label: "Modifier",
+                      placeHolder: "Modifier",
+                      additionalCssClasses: "hiddenlabel",
+                      name: "prop_cm_modifier",
+                      requirementConfig: {
+                         initialValue: false
+                      }
+                   }
+                },
+                
+                {
+                    name: "alfresco/forms/controls/Select",
+                    assignTo: "entryField",
+                    config: {
+                       label: "Datatype",
+                       name: "datatype",
+                       width: "159px",
+                       placeHolder: "Data type",
+                       additionalCssClasses: "",
+                       requirementConfig: {
+                          initialValue: false
+                       },
+                       optionsConfig: {
+                     	           fixed: [
+                     	                { label: "Content", value: "cm:content" },
+                     	                { label: "Folder", value: "cm:folder" },
+                     	                
+                     	             ]
+                       }
+                    }
+                 },
+                
+           
+        ]
    }
 };
 

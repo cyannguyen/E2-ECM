@@ -16,6 +16,8 @@
       -->
       <filter id="workflows"     data="active"       parameters=""/>
       <filter id="workflows"     data="completed"    parameters="pooledTasks=false&amp;state=COMPLETED"/>
+	  <filter id="workflows"     data="hvtd1"        parameters="exclude=wf:*,hvtd2:*"/>
+	  <filter id="workflows"     data="hvtd2"        parameters="exclude=wf:*,hvtd1:*"/>
       <filter id="due"           data="today"        parameters="dueAfter={-1d}&amp;dueBefore={0d}"/>
       <filter id="due"           data="tomorrow"     parameters="dueAfter={0d}&amp;dueBefore={1d}"/>
       <filter id="due"           data="next7Days"    parameters="dueAfter={0d}&amp;dueBefore={8d}"/>

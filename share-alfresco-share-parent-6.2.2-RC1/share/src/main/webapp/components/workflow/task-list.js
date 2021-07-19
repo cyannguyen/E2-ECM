@@ -116,8 +116,8 @@
       onReady: function DL_onReady()
       {
          var url = Alfresco.constants.PROXY_URI + "api/task-instances?authority=" + encodeURIComponent(Alfresco.constants.USERNAME) +
-               "&properties=" + ["bpm_priority", "bpm_status", "bpm_dueDate", "bpm_description"].join(",") +
-               "&exclude=" + this.options.hiddenTaskTypes.join(",");
+               "&properties=" + ["bpm_priority", "bpm_status", "bpm_dueDate", "bpm_description"].join(",");// +
+               //"&exclude=" + this.options.hiddenTaskTypes.join(",");
          this.widgets.pagingDataTable = new Alfresco.util.DataTable(
          {
             dataTable:

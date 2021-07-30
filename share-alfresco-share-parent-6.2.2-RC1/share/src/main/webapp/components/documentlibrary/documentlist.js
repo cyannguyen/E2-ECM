@@ -2096,6 +2096,7 @@
             // The "___" is explained in a comment further up... don't change it though.
             html += '<span id="' + "___" + record._filenameId + '">' + Alfresco.DocumentList.generateFileFolderLinkMarkup(this, record);
             html += $html(record.displayName) + '</a></span>';
+            html += '<span class="item item-separator hidden">' + Alfresco.DocumentList.generateQuickShare(this, record) + '</span>';
             return html;
          });
 

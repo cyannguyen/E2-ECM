@@ -1200,6 +1200,13 @@ span.item-modifier
 {
    z-index: 2147483647 !important; /* This needs to be the maximum value to cope with full screen display */
 }
+
+.quickshare-action-custom
+{
+   left: 524px !important;
+   top: 304px !important;
+}
+
 .quickshare-action-menu .bd
 {
    padding: 0.75em 1em 0 1em;

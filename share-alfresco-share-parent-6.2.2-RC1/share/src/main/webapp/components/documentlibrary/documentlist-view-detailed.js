@@ -757,14 +757,46 @@
                for (var i = 0, ii = actions.length; i < ii; i++)
                {
                   actionHTML += scope.renderAction(actions[i], record);
+                  if (i === 0) {
+                     actionHTML += '<div id="onActionShare"><a class="quickshare-action simple-link">Share</a></div>';
+                  }
                }
-   
+
                // Token replacement - action Urls
                actionsEl.innerHTML = YAHOO.lang.substitute(actionHTML, scope.getActionUrls(record));
-   
+
                // Simple or detailed view
                Dom.addClass(actionsEl, "action-set");
                Dom.addClass(actionsEl, this.actionsCssClassName);
+
+               scope.widgets.action = YAHOO.util.Selector.query('.quickshare-action', actionsEl);
+
+               YAHOO.util.Event.addListener(scope.widgets.action, "click", function()
+               {
+                  var trId = this.getDataTableRecordIdFromRowElement(scope, targetElement);
+
+                  //alert('You Clicked me!');
+
+                  var aaa = "#" + trId + " > td > div > div > span > span > a";
+
+                  var aaa1 = "#" + trId + " > td > div > span > span > a";
+
+                  var elem = document.querySelector(aaa);
+                  var elem1 = document.querySelector(aaa1);
+
+                  //var bbb = elem.className;
+
+                  //var ccc = "." + bbb;
+
+                  if(elem != null){
+                     elem.click();
+                  }
+
+                  if(elem1 != null){
+                     elem1.click();
+                  }
+
+               }, null, this);
    
                // Need the "More >" container?
                actionsSel = YAHOO.util.Selector.query("div", actionsEl);

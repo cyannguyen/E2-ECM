@@ -1108,6 +1108,12 @@ Alfresco.Share.postActivity = function(siteId, activityType, title, page, data, 
             Dom.addClass(overlayEl, "yuimenu");
             Dom.addClass(overlayEl, "quickshare-action-menu");
 
+            this.widgets.spanEl = Dom.get(this.id);
+
+            if(this.widgets.spanEl.parentElement.classList.contains("hidden")){
+               Dom.addClass(overlayEl, "quickshare-action-custom");
+            }
+
             var html = '' +
                '<div class="bd">' +
                '  <span class="section">' +

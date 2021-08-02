@@ -932,6 +932,19 @@ function generateUserItems() {
    ];
 }
 
+function generateUserItems1() {
+   return [
+      {
+         id: "HEADER_USER_MENU_POPUP1",
+         name: "alfresco/menus/AlfMenuBarItem",
+         config: {
+            id: "HEADER_USER_MENU_POPUP1",
+            label: user.googleUsername
+         }
+      }
+   ];
+}
+
 /* *********************************************************************************
  *                                                                                 *
  * USER MENU WIDGETS                                                               *
@@ -1102,6 +1115,7 @@ function getHeaderMenus() {
    var headerMenus = {};
    headerMenus.appItems = generateAppItems();
    headerMenus.userItems = generateUserItems();
+   headerMenus.userItems1 = generateUserItems1();
    return headerMenus;
 }
 
@@ -1743,6 +1757,16 @@ function getHeaderModel(pageTitle) {
                   widgets: headerMenus.appItems
                }
             },
+			
+			{
+               id: "HEADER_USER_MENU_BAR1",
+               name: "alfresco/header/AlfMenuBar",
+               align: "right",
+               config: {
+                  widgets: headerMenus.userItems1
+               }
+            },
+			
             {
                id: "HEADER_USER_MENU_BAR",
                name: "alfresco/header/AlfMenuBar",

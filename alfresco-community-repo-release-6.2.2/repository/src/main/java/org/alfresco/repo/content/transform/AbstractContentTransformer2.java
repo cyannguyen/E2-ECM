@@ -246,7 +246,7 @@ public abstract class AbstractContentTransformer2 extends AbstractContentTransfo
                 // MNT-16381: check the mimetype of the file supplied by the user
                 // matches the sourceMimetype of the reader. Intermediate files are
                 // not checked.
-                strictMimetypeCheck(reader, options, sourceMimetype);
+               // strictMimetypeCheck(reader, options, sourceMimetype);
 
                 // Check the transformability
                 checkTransformable(reader, writer, options);

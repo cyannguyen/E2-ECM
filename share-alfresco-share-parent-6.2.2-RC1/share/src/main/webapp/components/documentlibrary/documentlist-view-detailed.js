@@ -519,7 +519,7 @@
             }
          }
 
-         elCell.innerHTML = desc;
+         elCell.innerHTML = desc + '<span class="item item-separator hidden">' + Alfresco.DocumentList.generateQuickShare(this, record) + '</span>';
 
          Event.on(Dom.getElementsByClassName("banner-more-info-link", "span", elCell), "click", function showMoreInfoLinkClick(event)
          {
@@ -744,6 +744,10 @@
          {
             // Retrieve the actionSet for this record
             var oRecord = scope.widgets.dataTable.getRecord(this.getDataTableRecordIdFromRowElement(scope, targetElement));
+
+            //TuTV
+            var trId = this.getDataTableRecordIdFromRowElement(scope, targetElement);
+
             if (oRecord !== null)
             {
                var record = oRecord.getData(),
@@ -757,8 +761,17 @@
                for (var i = 0, ii = actions.length; i < ii; i++)
                {
                   actionHTML += scope.renderAction(actions[i], record);
+                  //TuTV
                   if (i === 0) {
-                     actionHTML += '<div id="onActionShare"><a class="quickshare-action simple-link">Share</a></div>';
+                     var var1 = document.querySelector("#" + trId + " > td > div > span");
+                     var var2 = document.querySelector("#" + trId + " > td > div > div > span > span > a");
+                     if(var1 != null && !var1.classList.contains("folder") && !var1.classList.contains("folder-small")) {
+                        if(var2 != null) {
+                           actionHTML += '<div title="Share" id="onActionShare"><a class="quickshare-action simple-link" style="background-image:url(/share/res/components/documentlibrary/actions/share_custom.png)">Share</a></div>';
+                        } else {
+                           actionHTML += '<div title="Share" id="onActionShare"><a class="quickshare-action simple-link" style="background-image:url(/share/res/components/documentlibrary/actions/share_custom.png)"></a></div>';
+                        }
+                     }
                   }
                }
 
@@ -773,26 +786,20 @@
 
                YAHOO.util.Event.addListener(scope.widgets.action, "click", function()
                {
-                  var trId = this.getDataTableRecordIdFromRowElement(scope, targetElement);
-
                   //alert('You Clicked me!');
 
-                  var aaa = "#" + trId + " > td > div > div > span > span > a";
+                  let select1 = "#" + trId + " > td > div > div > span > span > a";
 
-                  var aaa1 = "#" + trId + " > td > div > span > span > a";
+                  let select2 = "#" + trId + " > td > div > span > span > a";
 
-                  var elem = document.querySelector(aaa);
-                  var elem1 = document.querySelector(aaa1);
+                  let elem = document.querySelector(select1);
+                  let elem1 = document.querySelector(select2);
 
-                  //var bbb = elem.className;
-
-                  //var ccc = "." + bbb;
-
-                  if(elem != null){
+                  if(elem != null && elem1 != null){
                      elem.click();
-                  }
-
-                  if(elem1 != null){
+                  } else if (elem != null) {
+                     elem.click();
+                  } else if(elem1 != null){
                      elem1.click();
                   }
 

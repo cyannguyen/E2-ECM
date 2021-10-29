@@ -772,6 +772,12 @@
                            actionHTML += '<div title="Share" id="onActionShare"><a class="quickshare-action simple-link" style="background-image:url(/share/res/components/documentlibrary/actions/share_custom.png)"></a></div>';
                         }
                      }
+                     
+                     if(!record.isFavourite) {
+                    	 actionHTML += '<div id="onActionFavourite" class=""><a title="Favourite" class="favourite-action theme-color-1 favourite-document" style="background-image: url(/share/res/components/images/star-deselected_16x16.png);"><span>Favourite</span></a></div>';
+                     } else {
+                    	 actionHTML += '<div id="onActionUnFavourite" class=""><a title="Remove document from favorites" class="favourite-action theme-color-1 favourite-document enabled favourite-action-favourite" style="background-image: url(/share/res/components/images/star-selected_16x16.png);"><span>Remove document from favorites</span></a></div>';
+                     }
                   }
                }
 

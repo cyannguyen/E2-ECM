@@ -61,7 +61,7 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
+        <!--dependency>
             <groupId>org.alfresco</groupId>
             <artifactId>alfresco-repository</artifactId>
             <version>${dependency.alfresco-repository.version}</version>
@@ -76,13 +76,12 @@
 		            <groupId>org.alfresco</groupId>
 		            <artifactId>alfresco-core</artifactId>
 	        	</exclusion>
-            	<!-- SHA-2432 -->
                 <exclusion>
                   <groupId>javax.servlet</groupId>
                   <artifactId>jstl</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency-->
         <dependency>
             <groupId>org.alfresco</groupId>
             <artifactId>alfresco-remote-api</artifactId>

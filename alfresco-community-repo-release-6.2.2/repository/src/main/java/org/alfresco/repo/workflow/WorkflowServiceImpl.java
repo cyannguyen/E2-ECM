@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -837,10 +838,32 @@ public class WorkflowServiceImpl implements WorkflowService
     		WorkflowTaskState state, boolean lazyInitialization) {
     	 List<WorkflowTask> tasks = new ArrayList<WorkflowTask>(10);
          String[] ids = registry.getTaskComponents();
+         Set<String> groupMembers = authorityService.getContainedAuthorities(AuthorityType.USER, "GROUP_ALFRESCO_ADMINISTRATORS", false);
+         System.out.println(groupMembers);
+         boolean isAdminUser = groupMembers != null && groupMembers.contains(authority);
          for (String id : ids)
          {
              TaskComponent component = registry.getTaskComponent(id);
-             tasks.addAll(component.getAssignedTasks(authority, state, lazyInitialization));
+            
+             if(state == WorkflowTaskState.IN_PROGRESS && isAdminUser) {
+            	 System.out.println("Get Task for all Users");
+            	 Set<String> parents = authorityService.getContainingAuthorities(AuthorityType.GROUP, authority, false);
+            	 Set<String> allMembers = new HashSet<String>();
+            	 for(String group : parents) {
+            		 System.out.println("Get list user of group: " + group);
+            		 Set<String> members = authorityService.getContainedAuthorities(AuthorityType.USER, group, false);
+            		 allMembers.addAll(members);
+                     System.out.println(members);
+            	 }
+            	 
+            	 for(String mem : allMembers) {
+            		 tasks.addAll(component.getAssignedTasks(mem, state, lazyInitialization));
+            	 }
+            	 System.out.println("All tasks: " + tasks.size());
+            	 
+             } else {
+            	 tasks.addAll(component.getAssignedTasks(authority, state, lazyInitialization));
+             }
          }
          return Collections.unmodifiableList(tasks);
     }

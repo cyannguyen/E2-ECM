@@ -175,6 +175,28 @@ public class DocumentLinkServiceImpl implements DocumentLinkService, NodeService
         props.put(ContentModel.PROP_DESCRIPTION, newName);
 
         QName assocQName = QName.createQName(NamespaceService.CONTENT_MODEL_1_0_URI, QName.createValidLocalName(newName));
+        
+        /* Create link */
+        String targetName = (String) nodeService.getProperty(destination, ContentModel.PROP_NAME);
+
+        String newName2 = targetName + LINK_NODE_EXTENSION;
+        newName2 = I18NUtil.getMessage(LINK_TO_LABEL, newName2);
+
+        Map<QName, Serializable> props2 = new HashMap<QName, Serializable>();
+        props.put(ContentModel.PROP_NAME, newName2);
+        props.put(ContentModel.PROP_LINK_DESTINATION, destination);
+        props.put(ContentModel.PROP_TITLE, newName2);
+        props.put(ContentModel.PROP_DESCRIPTION, newName2);
+        
+        //Map<QName, Serializable> props2 = new HashMap<QName, Serializable>();
+        props.put(ContentModel.PROP_NAME, newName2);
+        props.put(ContentModel.PROP_LINK_DESTINATION, destination);
+        props.put(ContentModel.PROP_TITLE, newName2);
+        props.put(ContentModel.PROP_DESCRIPTION, newName2);
+
+        QName assocQName2 = QName.createQName(NamespaceService.CONTENT_MODEL_1_0_URI, QName.createValidLocalName(newName2));
+        
+        
 
         ChildAssociationRef childRef = null;
         QName sourceType = nodeService.getType(source);
@@ -190,6 +212,10 @@ public class DocumentLinkServiceImpl implements DocumentLinkService, NodeService
             {
                 // create File Link node
                 childRef = nodeService.createNode(destination, ContentModel.ASSOC_CONTAINS, assocQName, ApplicationModel.TYPE_FILELINK, props);
+               
+                // create Folder link node
+                //nodeService.addAspect(source, ContentModel.TYPE_BASE, props2);
+                ChildAssociationRef childRef2 = nodeService.createNode(source, ContentModel.ASSOC_CONTAINS, assocQName2, ApplicationModel.TYPE_FOLDERLINK, props2);
 
             }
             else if (!dictionaryService.isSubClass(sourceType, SiteModel.TYPE_SITE)
